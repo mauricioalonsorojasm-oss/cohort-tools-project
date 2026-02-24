@@ -14,7 +14,7 @@ const PORT = 5005;
 // INITIALIZE EXPRESS APP - https://expressjs.com/en/4x/api.html#express
 const app = express();
 mongoose
-  .connect('mongodb://127.0.0.1:27017/cohorts-tools-api')
+  .connect('mongodb://127.0.0.1:27017/cohort-tools-api')
   .then((x) =>
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`,

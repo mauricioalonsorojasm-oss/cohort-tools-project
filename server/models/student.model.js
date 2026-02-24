@@ -5,7 +5,7 @@ const studentsSchema = new Schema({
   firstName: String,
   lastName: String,
   email: String,
-  phone: Number,
+  phone: String,
   linkedinUrl: String,
   languages: { type: Array, default: [] },
   program: String,
@@ -17,4 +17,4 @@ const studentsSchema = new Schema({
 
 const Student = mongoose.model('Student', studentsSchema);
 
-module.export = Student;
+module.exports = Student;
