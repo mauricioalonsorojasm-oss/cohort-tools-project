@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ['http://localhost:5005'],
+    origin: ['http://localhost:5005', "http://localhost:5173"],
   }),
 );
 
