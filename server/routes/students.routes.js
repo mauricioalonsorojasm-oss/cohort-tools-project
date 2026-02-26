@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Student = require('./models/student.model');
+const Student = require('../models/student.model');
 
 router.post('/', async (req, res) => {
   try {
@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
     res.status(201).json(newStudent);
   } catch (error) {
     console.log(error);
-    res.status(500).json(error);
+    next(error);
   }
 });
 
@@ -32,12 +32,12 @@ router.get('/', (req, res) => {
     })
     .catch((error) => {
       console.log('error');
-      res.status(500).json({ error: 'Failed to retrieve students' });
+      next(error);
     });
 });
 
 // Get all students of a given cohort
-router.get('/:cohortId', async (req, res) => {
+router.get('/cohort/:cohortId', async (req, res) => {
   try {
     const students = await Student.find({
       cohort: req.params.cohortId,
@@ -45,7 +45,7 @@ router.get('/:cohortId', async (req, res) => {
     res.status(200).json(students);
   } catch (error) {
     console.log('error');
-    res.status(500).json({ error: 'Failed to retrieve students' });
+    next(error);
   }
 });
 
@@ -58,7 +58,7 @@ router.get('/:studentId', async (req, res) => {
     res.status(200).json(student);
   } catch (error) {
     console.log('error');
-    res.status(500).json({ error: 'Failed to retrieve student' });
+    next(error);
   }
 });
 
@@ -73,7 +73,7 @@ router.put('/:studentId', async (req, res) => {
     res.status(200).json(student);
   } catch (error) {
     console.log('error');
-    res.status(500).json({ error: 'Failed to update student' });
+    next(error);
   }
 });
 
@@ -84,7 +84,7 @@ router.delete('/:studentId', async (req, res) => {
     res.status(200).json(student);
   } catch (error) {
     console.log('error');
-    res.status(500).json({ error: 'Failed to delete student' });
+    next(error);
   }
 });
 module.exports = router;

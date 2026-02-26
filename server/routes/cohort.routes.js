@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Cohort = require('./models/cohort.model');
+const Cohort = require('../models/cohort.model');
 
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
   try {
     const newCohort = await Cohort.create({
       inProgress: req.body.inProgress,
@@ -19,12 +19,12 @@ router.post('/', async (req, res) => {
     res.status(201).json(newCohort);
   } catch (error) {
     console.log(error);
-    res.status(500).json(error);
+    next(error);
   }
 });
 
 // Get
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   Cohort.find({})
     .then((cohorts) => {
       console.log(cohorts.length);
@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
     })
     .catch((error) => {
       console.log('error');
-      res.status(500).json({ error: 'Failed to retrieve cohorts' });
+      next(error);
     });
 });
 
@@ -43,7 +43,7 @@ router.get('/:cohortId', async (req, res) => {
     res.status(200).json(cohort);
   } catch (error) {
     console.log('error');
-    res.status(500).json({ error: 'Failed to retrieve cohort' });
+    next(error);
   }
 });
 
@@ -58,7 +58,7 @@ router.put('/:cohortId', async (req, res) => {
     res.status(200).json(cohort);
   } catch (error) {
     console.log('error');
-    res.status(500).json({ error: 'Failed to update cohort' });
+    next(error);
   }
 });
 
@@ -69,7 +69,7 @@ router.delete('/:cohortId', async (req, res) => {
     res.status(200).json(cohort);
   } catch (error) {
     console.log('error');
-    res.status(500).json({ error: 'Failed to delete cohort' });
+    next(error);
   }
 });
 module.exports = router;

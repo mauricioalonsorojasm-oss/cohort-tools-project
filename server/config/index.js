@@ -1,3 +1,5 @@
+const express = require("express");
+const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const cors = require('cors');
 
@@ -13,4 +15,4 @@ function config(app) {
     }),
   );
 }
-modules.exports = config;
+module.exports = config;
