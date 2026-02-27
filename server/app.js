@@ -1,6 +1,12 @@
+try {
+  process.loadEnvFile()
+} catch(error) {
+  console.warn(".env file not found, using default environment values")
+}
+
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const PORT = 5005;
+const PORT = process.env.PORT;
 
 // STATIC DATA
 // Devs Team - Import the provided files with JSON data of students and cohorts here:
