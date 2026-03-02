@@ -11,7 +11,7 @@ function config(app) {
   app.use(cookieParser());
   app.use(
     cors({
-      origin: [process.env.SERVER_URL, process.env.CLIENT_URL],
+      origin: [process.env.SERVER_URL, "http://localhost:5174"],
     }),
   );
 }

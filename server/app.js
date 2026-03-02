@@ -6,7 +6,7 @@ try {
 
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5005;
 
 // STATIC DATA
 // Devs Team - Import the provided files with JSON data of students and cohorts here:
